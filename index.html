@@ -526,15 +526,46 @@
       .process-steps::before { display: none; }
       .step { margin-bottom: 2rem; }
     }
+
+    /* ── মোবাইল এবং ট্যাবলেটের জন্য অতিরিক্ত রেস্পন্সিভ মিডিয়া কোয়েরি ── */
+    @media screen and (max-width: 768px) {
+      .process-steps {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+        align-items: center !important;
+      }
+      
+      .step {
+        width: 100% !important;
+        max-width: 450px !important;
+        padding: 24px !important;
+        text-align: center !important;
+        animation: none !important; /* মোবাইলে অতিরিক্ত গ্লোয়িং স্ট্যাটিক রাখা হলো */
+        border-color: rgba(0, 123, 255, 0.3) !important;
+        box-shadow: 0 4px 15px rgba(0, 123, 255, 0.1) !important;
+      }
+
+      .glowing-line, .process-steps-container::before {
+        display: none !important; /* মোবাইলে হরাইজন্টাল লাইনটি অফ রাখা ভালো */
+      }
+      
+      .work-grid, .services-grid, .testi-grid {
+        grid-template-columns: 1fr !important; /* কার্ডগুলো এক কলামে পর পর চলে আসবে */
+      }
+      
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1.5rem !important;
+        padding: 2.5rem 4vw !important;
+      }
+    }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
  <a class="logo" href="index.html">Pixel<span>.io</span></a>
-
-<!-- Logo -->
 
 <style>
 .logo {
@@ -543,13 +574,13 @@
   font-size: 1.5rem;
   text-decoration: none;
 
-  /* ইমেজের বাম পাশের সায়ান থেকে বেগুনি গ্রেডি্যেন্ট ইফেক্ট */
+  /* ইমেজের বাম পাশের সায়ান থেকে বেগুনি গ্রেডি্যেন্ট ইফেক্ট */
   background: linear-gradient(to right, #38bdf8 0%, #3b82f6 50%, #a855f7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
 
-  /* গ্লো কমিয়ে আনা হয়েছে যেন টেক্সট একদম শার্প ও পরিষ্কার দেখায় */
+  /* গ্লো কমিয়ে আনা হয়েছে যেন টেক্সট একদম শার্প ও পরিষ্কার দেখায় */
   filter: drop-shadow(0 0 3px rgba(56, 189, 248, 0.2));
   transition: opacity 0.3s ease;
 }
@@ -560,7 +591,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  /* .io অংশের গ্লো-ও কমিয়ে ব্যালেন্স করা হয়েছে */
+  /* .io অংশের গ্লো-ও কমিয়ে ব্যালেন্স করা হয়েছে */
   filter: drop-shadow(0 0 4px rgba(0, 218, 255, 0.4));
 }
 
@@ -577,7 +608,6 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="pixel-grid"></div>
   <div class="orb orb-1"></div>
@@ -596,7 +626,6 @@
   </div>
 </section>
 
-<!-- STATS -->
 <div class="stats-row">
   <div class="stat">
     <div class="stat-num">10<span>+</span></div>
@@ -616,7 +645,6 @@
   </div>
 </div>
 
-<!-- TRUST -->
 <div class="trust">
   <p>Trusted by businesses across industries</p>
   <div class="trust-logos">
@@ -626,7 +654,6 @@
   </div>
 </div>
 
-<!-- SERVICES -->
 <section class="services" id="services">
   <div class="services-inner">
     <div class="services-header">
@@ -725,10 +752,10 @@
   z-index: 2; /* যেন কার্ডগুলো লাইনের উপরে থাকে */
 }
 
-/* কন্টিনিউয়াস গ্লোয়িং লাইন ট্রিক */
+/* কন্টিনিউয়াস গ্লোয়িং লাইন ট্রিক */
 .glowing-line {
   position: absolute;
-  top: 30px; /* আপনার ০১, ০২ সার্কেলের হাইট অনুযায়ী এটি উপরে-নিচে (যেমন: 25px বা 35px) করতে পারেন */
+  top: 30px; /* আপনার ০১, ০২ সার্কেলের হাইট অনুযায়ী এটি উপরে-নিচে (যেমন: 25px বা 35px) করতে পারেন */
   left: 0;
   height: 2px;
   background: rgba(0, 123, 255, 0.1); /* ডিফল্ট আবছা লাইন */
@@ -736,7 +763,7 @@
   z-index: 1;
 }
 
-/* লাইনের ওপর দিয়ে যে নীল আলোটি যাবে */
+/* লাইনের ওপর দিয়ে যে নীল আলোটি যাবে */
 .glowing-line::after {
   content: '';
   position: absolute;
@@ -751,7 +778,7 @@
 
 /* প্রতিটি বক্সের বেসিক এবং অ্যানিমেশন সেটআপ */
 .step {
-  background: #0b111e; /* আপনার ওয়েবসাইটের ডার্ক ব্যাকগ্রাউন্ডের সাথে মিলিয়ে নিন */
+  background: #0b111e; /* আপনার ওয়েবসাইটের ডার্ক ব্যাকগ্রাউন্ডের সাথে মিলিয়ে নিন */
   border: 1px solid rgba(0, 123, 255, 0.15);
   border-radius: 8px;
   padding: 20px;
@@ -760,7 +787,7 @@
   animation: stepGlow 8s infinite linear;
 }
 
-/* টাইম ডিলে (লাইন যেভাবে আগাবে, সেই অনুযায়ী বক্স জ্বলবে) */
+/* টাইম ডিলে (লাইন যেভাবে আগাবে, সেই অনুযায়ী বক্স জ্বলবে) */
 #step1 { animation-delay: 0s; }
 #step2 { animation-delay: 2s; }
 #step3 { animation-delay: 4s; }
@@ -769,7 +796,7 @@
 
 /* ────── অ্যানিমেশন কি-ফ্রেম (Keyframes) ────── */
 
-/* ১ নম্বর থেকে ৪ নম্বর পর্যন্ত লাইনের আলো যাওয়ার লজিক */
+/* ১ নম্বর থেকে ৪ নম্বর পর্যন্ত লাইনের আলো যাওয়ার লজিক */
 @keyframes lineFlow {
   0% { width: 0%; }
   25% { width: 25%; }
@@ -778,7 +805,7 @@
   100% { width: 100%; }
 }
 
-/* আলো যখন যে বক্সের ওপর পৌঁছাবে, তখন সেটি গ্লো হবে */
+/* আলো যখন যে باکسের ওপর পৌঁছাবে, তখন সেটি গ্লো হবে */
 @keyframes stepGlow {
   0%, 20% {
     border-color: #007bff;
@@ -790,7 +817,6 @@
   }
 }
 </style>
-<!-- WORK -->
 <section class="work" id="work">
   <div class="work-inner">
     <div class="work-header">
@@ -824,7 +850,7 @@
 .work-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* ছবি চ্যাপ্টা না হয়ে বক্সের সাইজ অনুযায়ী সুন্দরভাবে ফিট হবে */
+  object-fit: cover; /* ছবি চ্যাপ্টা না হয়ে বক্সের সাইজ অনুযায়ী সুন্দরভাবে ফিট হবে */
   display: block;
 }
 </style>
@@ -842,7 +868,6 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
 <section>
   <div class="testimonials">
     <div style="text-align:center; max-width:520px; margin:0 auto;">
@@ -887,14 +912,12 @@
   </div>
 </section>
 
-<!-- CTA BANNER -->
 <section class="cta-banner">
   <h2>Ready to build something great?</h2>
   <p>Let's talk about your project. No obligation — just a friendly conversation about what's possible.</p>
   <a href="contact.html" class="btn-primary">Get a Free Quote</a>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
