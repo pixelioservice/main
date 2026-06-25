@@ -1,94 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy — Pixel io</title>
-  <style>
-    /* আপনার ওয়েবসাইটের ডার্ক থিমের সাথে ম্যাচিং স্টাইল */
-    body {
-      background-color: #0b111e;
-      color: #fff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      margin: 0;
-      padding: 40px 20px;
-    }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background: rgba(255, 255, 255, 0.02);
-      padding: 40px;
-      border-radius: 12px;
-      border: 1px solid rgba(0, 218, 255, 0.1);
-    }
-    h1 {
-      color: #00daff;
-      border-bottom: 2px solid rgba(0, 218, 255, 0.2);
-      padding-bottom: 15px;
-      margin-top: 0;
-    }
-    h2 {
-      color: #00daff;
-      margin-top: 30px;
-      font-size: 1.4rem;
-    }
-    p, li {
-      color: #b0b8c4;
-    }
-    ul {
-      padding-left: 20px;
-    }
-    .back-home {
-      display: inline-block;
-      margin-bottom: 20px;
-      color: #00daff;
-      text-decoration: none;
-      font-weight: bold;
-      transition: opacity 0.2s;
-    }
-    .back-home:hover {
-      opacity: 0.8;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Pixel io</title>
+    <meta name="description" content="Privacy Policy for Pixel io. Understand how we protect and process your data.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .policy-container {
+            padding: 10rem 0 6rem 0;
+            min-height: 80vh;
+        }
+        .policy-card {
+            padding: 3.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .policy-card h1 {
+            font-size: 2.75rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--clr-blue), var(--clr-cyan));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .policy-card h2 {
+            font-size: 1.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+        .policy-card p {
+            margin-bottom: 1.25rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        .policy-card ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            color: var(--clr-text-muted);
+        }
+        .policy-card li {
+            margin-bottom: 0.5rem;
+        }
+        .back-btn {
+            margin-top: 2rem;
+        }
+    </style>
 </head>
 <body>
+    <!-- Background Interactive Pixel Canvas -->
+    <canvas id="pixel-bg-canvas"></canvas>
 
-  <div class="container">
-    <a href="index.html" class="back-home">← Back to Home</a>
+    <!-- Header Navigation -->
+    <header class="navbar-header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-pixel-cube">
+                    <span class="pixel-dot top-left"></span>
+                    <span class="pixel-dot bottom-right"></span>
+                </div>
+                <span class="logo-text"><span class="logo-pix">Pix</span><span class="logo-el">el</span> <span class="logo-io">io</span></span>
+            </a>
+            
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html#services" class="nav-link">Services</a>
+                <a href="index.html#portfolio" class="nav-link">Work</a>
+                <a href="index.html#concept" class="nav-link">Process</a>
+            </nav>
 
-    <h1>Privacy Policy</h1>
-    <p><strong>Last Updated: June 2026</strong></p>
-    <p>At Pixel io, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website and use our contact or request forms.</p>
+            <div class="nav-actions">
+                <a href="index.html" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Home</a>
+            </div>
+        </div>
+    </header>
 
-    <h2>1. Information We Collect</h2>
-    <p>When you fill out a form on our website (such as our project inquiry or contact form), we may collect the following information:</p>
-    <ul>
-      <li><strong>Identity Data:</strong> Name, Company Name.</li>
-      <li><strong>Contact Data:</strong> Email address.</li>
-      <li><strong>Project Data:</strong> Website type needed, budget range, and any details you provide about your project.</li>
-    </ul>
+    <main class="container policy-container">
+        <div class="policy-card glass-panel">
+            <h1>Privacy Policy</h1>
+            <p><strong>Effective Date: June 24, 2026</strong></p>
+            <p>At Pixel io, accessibility and data integrity are central to our digital architecture. This privacy protocol outlines how we collect, process, and protect your company telemetries and personal specifications when you transmit queries through our interfaces.</p>
+            
+            <h2>1. Information We Collect</h2>
+            <p>We only gather data necessary to initiate business collaborations and estimate digital development costs. This includes:</p>
+            <ul>
+                <li><strong>Identity Specifications</strong>: Your first and last name.</li>
+                <li><strong>Contact Access Points</strong>: Your corporate email address and telephone connection nodes.</li>
+                <li><strong>Business Particulars</strong>: Your business registration title, project goals, and estimated budget selections.</li>
+            </ul>
 
-    <h2>2. How We Use Your Information</h2>
-    <p>We use the collected data strictly for professional purposes, including:</p>
-    <ul>
-      <li>To review your project requirements and provide an accurate quote.</li>
-      <li>To communicate with you regarding your inquiry.</li>
-      <li>To improve our website services and user experience.</li>
-    </ul>
+            <h2>2. Processing Protocol</h2>
+            <p>We process collected parameters strictly to:</p>
+            <ul>
+                <li>Formulate customized development drafts and price estimates.</li>
+                <li>Establish remote and voice communication to discuss visual architectures.</li>
+                <li>Optimize speed performance and layouts of our communication routes.</li>
+            </ul>
 
-    <h2>3. Data Protection & Security</h2>
-    <p>We implement a variety of security measures to maintain the safety of your personal information. Your data is strictly confidential and is never sold, traded, or shared with third parties without your explicit consent.</p>
+            <h2>3. Telemetry Protection & Security</h2>
+            <p>Your specifications are encrypted using industry-standard SSL protocols during transmission. We store assets on secure, firewall-protected database nodes. We never sell, distribute, or lease your private parameters to marketing aggregates or external third-party hosts.</p>
 
-    <h2>4. Cookies</h2>
-    <p>Our website may use cookies to enhance your browsing experience. You can choose to disable cookies through your browser settings if you prefer.</p>
+            <h2>4. Protocol Changes</h2>
+            <p>We reserve the option to modify this privacy protocol at any node. Updates will be highlighted on this terminal path with a modified effective date stamp.</p>
 
-    <h2>5. Your Rights</h2>
-    <p>You have the right to ask us to update, change, or completely delete your personal information from our records at any time by contacting us through our email.</p>
+            <h2>5. Contact Nodes</h2>
+            <p>If you have any specifications or request data erasure from our index records, contact our privacy node administrator at:</p>
+            <p><a href="mailto:pixel.io.service26@gmail.com" class="link-cyan"><strong>pixel.io.service26@gmail.com</strong></a></p>
 
-    <h2>6. Contact Us</h2>
-    <p>If you have any questions about this Privacy Policy, feel free to reach out to us via our contact page.</p>
-  </div>
+            <a href="index.html" class="btn btn-primary btn-glow back-btn">Return to Main Dimension</a>
+        </div>
+    </main>
 
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <div class="logo-pixel-cube">
+                        <span class="pixel-dot top-left"></span>
+                        <span class="pixel-dot bottom-right"></span>
+                    </div>
+                    <span class="logo-text"><span class="logo-pix">Pix</span><span class="logo-el">el</span> <span class="logo-io">io</span></span>
+                </a>
+                <p>Sculpting high-performance digital dimensions for visionary businesses worldwide.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="index.html#services">Web Engineering</a></li>
+                    <li><a href="index.html#services">Premium UI/UX</a></li>
+                    <li><a href="index.html#services">3D Experiences</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="index.html#concept">Our Methodology</a></li>
+                    <li><a href="index.html#portfolio">Our Portfolio</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p>&copy; 2026 Pixel io. All dimensions reserved.</p>
+                <div class="footer-legal">
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
 </body>
 </html>
