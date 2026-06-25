@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telemetry Log | Pixel io</title>
+    <meta name="description" content="Pixel io Telemetry Log — A transparent record of what data is collected, how it is used, and how we keep our digital infrastructure optimised and clean.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .policy-container {
+            padding: 10rem 0 6rem 0;
+            min-height: 80vh;
+        }
+        .policy-card {
+            padding: 3.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .policy-card h1 {
+            font-size: 2.75rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #00d2ff, #a855f7);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .effective-date {
+            font-size: 0.85rem;
+            color: var(--clr-text-muted);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .policy-card h2 {
+            font-size: 1.35rem;
+            margin-top: 2.5rem;
+            margin-bottom: 0.85rem;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .policy-card h2 i {
+            font-size: 1rem;
+            color: var(--clr-cyan);
+        }
+        .policy-card p {
+            margin-bottom: 1.25rem;
+            font-size: 1rem;
+            line-height: 1.75;
+            color: var(--clr-text-muted);
+        }
+        .policy-card ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            color: var(--clr-text-muted);
+        }
+        .policy-card li {
+            margin-bottom: 0.6rem;
+            line-height: 1.65;
+        }
+        .policy-card strong { color: #e0e0e0; }
+        .tele-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 1.75rem 0;
+        }
+        .tele-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.45rem 1rem;
+            border-radius: 999px;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            background: rgba(168, 85, 247, 0.06);
+            font-size: 0.8rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            color: #c084fc;
+        }
+        .tele-badge i { font-size: 0.75rem; }
+        /* Log entry table */
+        .log-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+        .log-table th {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            background: rgba(0, 210, 255, 0.06);
+            border-bottom: 1px solid rgba(0, 210, 255, 0.2);
+            color: var(--clr-cyan);
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .log-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--clr-text-muted);
+            vertical-align: top;
+        }
+        .log-table tr:last-child td { border-bottom: none; }
+        .log-table tr:hover td { background: rgba(255,255,255,0.02); }
+        .status-dot {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .status-dot::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .status-none::before  { background: #4ade80; box-shadow: 0 0 6px #4ade80; }
+        .status-minimal::before { background: #facc15; box-shadow: 0 0 6px #facc15; }
+        .status-none  { color: #4ade80; }
+        .status-minimal { color: #facc15; }
+        .info-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.25rem 1.5rem;
+            border-radius: 10px;
+            background: rgba(0, 210, 255, 0.05);
+            border: 1px solid rgba(0, 210, 255, 0.2);
+            margin: 2rem 0;
+        }
+        .info-box i {
+            font-size: 1.25rem;
+            color: var(--clr-cyan);
+            margin-top: 0.1rem;
+            flex-shrink: 0;
+        }
+        .info-box p { margin: 0; font-size: 0.95rem; }
+        .back-btn {
+            margin-top: 2.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .divider {
+            border: none;
+            border-top: 1px solid var(--border-color);
+            margin: 2.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Interactive Pixel Canvas -->
+    <canvas id="pixel-bg-canvas"></canvas>
+
+    <!-- Header Navigation -->
+    <header class="navbar-header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-pixel-cube">
+                    <span class="pixel-dot top-left"></span>
+                    <span class="pixel-dot bottom-right"></span>
+                </div>
+                <span class="logo-text"><span class="logo-pix">Pix</span><span class="logo-el">el</span> <span class="logo-io">io</span></span>
+            </a>
+
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html#home" class="nav-link">Home</a>
+                <a href="index.html#services" class="nav-link">Service</a>
+                <a href="index.html#concept" class="nav-link">Process</a>
+                <a href="index.html#portfolio" class="nav-link">Work</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="index.html" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Home</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container policy-container">
+        <div class="policy-card glass-panel">
+
+            <h1>Telemetry Log</h1>
+            <p class="effective-date"><i class="fa-regular fa-clock"></i> Last Updated: June 24, 2026</p>
+
+            <p>Pixel io operates with full transparency. This Telemetry Log documents exactly what information our platform observes, collects, and processes during normal operation — so you always know what is running in the background of your interaction with us.</p>
+
+            <div class="tele-badges">
+                <span class="tele-badge"><i class="fa-solid fa-chart-simple"></i> No Analytics Trackers</span>
+                <span class="tele-badge"><i class="fa-solid fa-cookie-bite"></i> No Tracking Cookies</span>
+                <span class="tele-badge"><i class="fa-solid fa-eye-slash"></i> No User Profiling</span>
+                <span class="tele-badge"><i class="fa-solid fa-circle-check"></i> Zero Data Brokers</span>
+                <span class="tele-badge"><i class="fa-solid fa-gauge-high"></i> Performance Only</span>
+            </div>
+
+            <hr class="divider">
+
+            <h2><i class="fa-solid fa-table-list"></i> Data Collection Overview</h2>
+            <p>The table below is a complete index of all data nodes we interact with during a visitor session. Each entry specifies the data type, its purpose, and its collection status on our platform.</p>
+
+            <table class="log-table">
+                <thead>
+                    <tr>
+                        <th>Data Node</th>
+                        <th>Purpose</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>IP Address</strong></td>
+                        <td>Standard server-side log for security abuse detection (not stored by us directly)</td>
+                        <td><span class="status-dot status-none">Not Stored</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Browser / Device Type</strong></td>
+                        <td>Not tracked or logged by any script on our platform</td>
+                        <td><span class="status-dot status-none">Not Collected</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Page Visit Duration</strong></td>
+                        <td>Not monitored — no session timers or heatmaps</td>
+                        <td><span class="status-dot status-none">Not Collected</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Contact Form Inputs</strong></td>
+                        <td>Collected on submission and routed to our secure WhatsApp channel only</td>
+                        <td><span class="status-dot status-minimal">Minimal (on submit)</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Email (Subscribe form)</strong></td>
+                        <td>Opt-in only — used for technical newsletter delivery</td>
+                        <td><span class="status-dot status-minimal">Minimal (opt-in)</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cookies</strong></td>
+                        <td>No tracking or advertising cookies are used on this site</td>
+                        <td><span class="status-dot status-none">None</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Third-Party Scripts</strong></td>
+                        <td>Only Google Fonts (typography) and Font Awesome CDN (icons) — no analytics</td>
+                        <td><span class="status-dot status-none">CDN Only</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pixel / Conversion Tags</strong></td>
+                        <td>No Facebook Pixel, Google Tag, or any advertising tracker is installed</td>
+                        <td><span class="status-dot status-none">None</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2><i class="fa-solid fa-microchip"></i> Canvas Telemetry (Interactive Background)</h2>
+            <p>Our site features an interactive pixel canvas background powered by vanilla JavaScript. This canvas responds to your cursor movement to create a visual effect. <strong>No positional data from your mouse or touch inputs is stored, transmitted, or logged</strong> — the interaction is entirely local to your browser session and discarded immediately.</p>
+
+            <h2><i class="fa-solid fa-gauge"></i> Performance Telemetry</h2>
+            <p>We design our platform to achieve sub-1.2 second load times. To maintain this, we periodically review our own site using tools like:</p>
+            <ul>
+                <li><strong>Google PageSpeed Insights</strong> — Manual, one-off performance audits. No ongoing data pipeline.</li>
+                <li><strong>Browser DevTools</strong> — Internal testing only; no data is captured from live visitors.</li>
+            </ul>
+            <p>We do not run any real-user monitoring (RUM) or automated performance sampling on visitor sessions.</p>
+
+            <h2><i class="fa-solid fa-clock-rotate-left"></i> Data Retention Policy</h2>
+            <p>Since we do not operate a persistent database for visitor data:</p>
+            <ul>
+                <li>Contact form submissions exist only inside our encrypted WhatsApp Business thread.</li>
+                <li>Newsletter opt-in emails (if any) are managed manually and can be removed on request.</li>
+                <li>There are no automated retention schedules, expiry timers, or archiving pipelines.</li>
+            </ul>
+
+            <div class="info-box">
+                <i class="fa-solid fa-circle-info"></i>
+                <p>To request deletion of any data you've submitted to us, contact <a href="mailto:pixel.io.service26@gmail.com" class="link-cyan"><strong>pixel.io.service26@gmail.com</strong></a> or message us on <a href="https://wa.me/8801575478716" target="_blank" rel="noopener" class="link-cyan"><strong>WhatsApp</strong></a>. We will action your request within 72 hours.</p>
+            </div>
+
+            <h2><i class="fa-solid fa-rotate"></i> Log Updates</h2>
+            <p>This Telemetry Log is reviewed and updated whenever the platform's technology stack, third-party dependencies, or data handling practices change. The effective date at the top of this document reflects the most recent revision.</p>
+
+            <hr class="divider">
+
+            <a href="index.html" class="btn btn-primary btn-glow back-btn">
+                <i class="fa-solid fa-arrow-left"></i> Return to Main Dimension
+            </a>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <div class="logo-pixel-cube">
+                        <span class="pixel-dot top-left"></span>
+                        <span class="pixel-dot bottom-right"></span>
+                    </div>
+                    <span class="logo-text"><span class="logo-pix">Pix</span><span class="logo-el">el</span> <span class="logo-io">io</span></span>
+                </a>
+                <p>Sculpting high-performance digital dimensions for visionary businesses worldwide.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://wa.me/8801575478716" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="index.html#services">Web Engineering</a></li>
+                    <li><a href="index.html#services">Premium UI/UX</a></li>
+                    <li><a href="index.html#services">3D Experiences</a></li>
+                    <li><a href="index.html#services">Cloud Deployments</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="index.html#concept">Our Methodology</a></li>
+                    <li><a href="index.html#portfolio">Our Portfolio</a></li>
+                    <li><a href="security.html">Security Nodes</a></li>
+                    <li><a href="telemetry.html">Telemetry Log</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="security.html">Security Nodes</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-container">
+                <p>&copy; 2026 Pixel io. All dimensions reserved.</p>
+                <div class="footer-legal">
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="security.html">Security Nodes</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
