@@ -363,20 +363,12 @@ section {
 }
 
 .logo-text {
+    font-size: 1.5rem;
     font-weight: 800;
-}
-
-.logo-pix {
-    color: var(--clr-blue);
-}
-
-.logo-el {
-    color: var(--clr-purple);
-}
-
-.logo-io {
-    color: var(--clr-cyan);
-    text-shadow: 0 0 12px rgba(0, 210, 255, 0.4);
+    letter-spacing: -0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
 }
 
 /* Nav Links */
@@ -1743,7 +1735,7 @@ section {
         width: 100%;
         gap: 1rem;
     }
-
+    
     .hero-buttons .btn {
         width: 100%;
     }
@@ -1754,7 +1746,7 @@ section {
         gap: 1.5rem;
         padding-top: 1.5rem;
     }
-
+    
     .stat-item.border-left {
         border-left: none;
         padding-left: 0;
